@@ -1,0 +1,9 @@
+nav(role='navigation' ng-controller='MenuController as menuCtrl' ng-cloak).noselect
+	.logo
+		img(src="./resources/logo.png" ng-click="menuCtrl.changeLocation('/user/')")
+	.menu-items
+		ul
+			li.dropdown.menu-item(ng-class="{active: curLink.isActive}" ng-repeat='curLink in menuCtrl.links' href='' ng-mouseover="curLink.viewSubMenu = true" ng-mouseleave="curLink.viewSubMenu = false" ng-click='menuCtrl.changeLocation(curLink.link, curLink)' ng-cloak)
+				span(ng-bind='curLink.text')
+				ul(class="dropdown-menu" ng-if='curLink.subitems' ng-show="curLink.viewSubMenu")
+					li(ng-repeat='subLink in curLink.subitems' href='' ng-click='menuCtrl.changeLocation(subLink.link, curLink)' ng-cloak ) {{subLink.text}}

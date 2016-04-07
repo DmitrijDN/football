@@ -1,0 +1,48 @@
+.user-balance-wrapper
+	h2 Users
+	.table
+		.row-item.header
+			.medium-col
+				span Name
+			.small-col
+				span Balance
+		.data
+			.row-item(ng-repeat="user in balanceCtrl.userList")
+				.medium-col
+					span {{user.fullName}}
+				.small-col
+					input(type="number" ng-model="user.balance" placeholder="Enter user balance" ng-change="balanceCtrl.updateProperty('balance', user)")
+	.summary
+		label Total:
+		span {{balanceCtrl.totalBalance}}
+	.counter-handler-wrapper(ng-show="balanceCtrl.uncountedMatches.length")
+		.table
+			.row-item.header
+				.small-col
+					span Date
+				.big-col
+					span Result
+			.data
+				.multi-rows-item
+					.row-item(ng-repeat="match in balanceCtrl.uncountedMatches track by $index" ng-click="balanceCtrl.expandCollapseDetails(match)")
+						.small-row
+							.small-col
+								span {{match.date | date: 'dd.MM.yyyy'}}
+							.big-col.result
+								.teamA
+									span Team A
+								.teamA-score
+									span {{match.teamAScore}}
+								.separator
+									span :
+								.teamB-score
+									span {{match.teamBScore}}
+								.teamB
+									span Team B
+							.control-col.right-aligned
+								i.fa.fa-calculator.fa-2x(ng-click="balanceCtrl.countMatch(match, $event)")
+						.high-row(ng-show="match.showDetails")
+							.team-details-data
+								.team-item(ng-repeat="team in match.teams track by $index")
+									label {{team.name + ':'}}
+									span(ng-repeat="player in team.players track by $index") {{player.firstName + ' ' + player.lastName + ', '}}

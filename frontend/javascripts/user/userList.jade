@@ -1,0 +1,14 @@
+.users-wrapper
+	h2 Users
+	.table
+		.row-item.header
+			.medium-col
+				span Name
+			.control-col.right-aligned
+				i.fa.fa-plus-circle.fa-2x(ng-click="userCtrl.addItem()")
+		.data
+			.row-item(ng-repeat="user in userCtrl.userList")
+				.medium-col
+					input(ng-model="user.fullName" placeholder="Enter name" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('fullName', user)")
+				.control-col.right-aligned
+					i.fa.fa-remove.fa-2x(ng-show="user._id" ng-click="userCtrl.removeItem(user._id)")

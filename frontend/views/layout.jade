@@ -1,0 +1,14 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		title Binary Studio Football
+		link(href='./styles/css/style.css' rel='stylesheet')
+		link(href='./styles/css/libs.css' rel='stylesheet')
+		link(rel="icon" href="http://www.binary-studio.com/wp-content/themes/binary-studio/images/favicon/favicon.ico" type="image/x-icon")
+	body(ng-cloak)
+		block content
+		script(src='./javascripts/libs.js')
+		script(src='./javascripts/main.js')
+		script.
+			angular.bootstrap(document, ['football-app']);

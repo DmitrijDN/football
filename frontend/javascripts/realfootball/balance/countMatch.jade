@@ -1,0 +1,37 @@
+.count-match-wrapper
+	h1 Count summary
+	.players-wrapper
+		h4 Players:
+		.player(ng-repeat="player in countCtrl.players")
+			span {{player.firstName + ' ' + player.lastName}}
+		.total
+			label Total:
+			span {{countCtrl.players.length}}
+	.additional-surcharges
+		h4 Surcharges
+		.table
+			.row-item.header
+				.small-col
+					span Name
+				.small-col
+					span Cost
+				.control-col.right-aligned
+					i.fa.fa-plus-circle.fa-2x(ng-click="countCtrl.addSurcharge()")
+			.data
+				.row-item(ng-repeat="surcharge in countCtrl.surcharges")
+					.small-col
+						input(type="text" ng-model="surcharge.name" placeholder="Enter surcharge name" ng-model-options="{updatOn: 'change'}" ng-change="countCtrl.updateSurcharge('name', surcharge)")
+					.small-col
+						input(type="number" ng-model="surcharge.cost" placeholder="Enter surcharge name" ng-model-options="{updatOn: 'change'}" ng-change="countCtrl.updateSurcharge('cost', surcharge)")
+					.control-col.right-aligned
+						i.fa.fa-remove.fa-2x(ng-click="countCtrl.removeSurcharge($index)")
+	.cost-summary
+		.total
+			label Total:
+			span {{countCtrl.totalCost}}
+	.per-person
+			label Per person:
+			span {{countCtrl.costPerPerson}}
+	.btns-wrapper
+		.default-btn(ng-click="countCtrl.updateBalance()")
+			span Update balance

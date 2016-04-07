@@ -1,0 +1,21 @@
+.create-match-wrapper
+	.users-wrapper
+		.item(ng-repeat="user in newMacthCtrl.userList track by $index")
+			.with-checkbox
+				label
+					input(type="checkbox" ng-model="user.isSelected")
+					span {{user.firstName + ' ' + user.lastName}}
+	.controls-wrapper
+		input(type="number" ng-model="newMacthCtrl.teamsCount" placeholder="Enter teams count" ng-change="newMacthCtrl.teamsCountChanged(newMacthCtrl.teamsCount)")
+	.btns-wrapper
+		.default-btn(ng-click="newMacthCtrl.generateTeams()")
+			span Generate
+		.default-btn(ng-click="newMacthCtrl.selectUnselectAll(newMacthCtrl.selectOption.value)")
+			span {{newMacthCtrl.selectOption.text}}
+		.default-btn(ng-show="newMacthCtrl.teams.length" ng-click="newMacthCtrl.saveTeams(newMacthCtrl.teams)")
+			span Accept
+	.teams-data-wrapper(ng-show="newMacthCtrl.teams.length")
+		.team-item(ng-repeat="team in newMacthCtrl.teams track by team.name")
+			p {{team.name}}
+			.player(ng-repeat="player in team.players")
+				span {{player.fullName + " "}}

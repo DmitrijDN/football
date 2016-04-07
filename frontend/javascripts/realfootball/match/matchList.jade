@@ -1,0 +1,34 @@
+.matches-wrapper
+	h2 Matches
+	.table
+		.row-item.header
+			.small-col
+				span Date
+			.big-col
+				span Result
+			.control-col.right-aligned
+				i.fa.fa-plus-circle.fa-2x(ng-click="matchCtrl.addItem()")
+		.data
+			.multi-rows-item
+				.row-item(ng-repeat="match in matchCtrl.matchList track by $index" ng-click="matchCtrl.expandCollapseDetails(match)")
+					.small-row
+						.small-col
+							span {{match.date | date: 'dd.MM.yyyy'}}
+						.big-col.result
+							.teamA
+								span Team A
+							.teamA-score
+								input(ng-model="match.teamAScore" placeholder="-" ng-model-options="{updateOn: 'change'}" ng-change="matchCtrl.updateProperty('teamAScore', match)" ng-click="matchCtrl.preventShowDetails($event)")
+							.separator
+								span :
+							.teamB-score
+								input(ng-model="match.teamBScore" placeholder="-" ng-model-options="{updateOn: 'change'}" ng-change="matchCtrl.updateProperty('teamBScore', match)" ng-click="matchCtrl.preventShowDetails($event)")
+							.teamB
+								span Team B
+						.control-col.right-aligned
+							i.fa.fa-remove.fa-2x(ng-click="matchCtrl.removeItem(match._id, $event)")
+					.high-row(ng-show="match.showDetails")
+						.team-details-data
+							.team-item(ng-repeat="team in match.teams track by $index")
+								label {{team.name + ':'}}
+								span(ng-repeat="player in team.players track by $index") {{player.firstName + ' ' + player.lastName + ', '}}
