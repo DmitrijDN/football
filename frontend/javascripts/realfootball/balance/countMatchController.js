@@ -9,10 +9,11 @@ require('../../app/app');
 
 	CountMatchController.$inject = [
 		'$uibModalInstance',
-		'matchData'
+		'matchData',
+		'UserHttpService'
 	];
 
-	function CountMatchController($uibModalInstance, matchData) {
+	function CountMatchController($uibModalInstance, matchData, userHttpService) {
 		var vm = this;
 
 		vm.players = [];
@@ -53,7 +54,21 @@ require('../../app/app');
 		}
 
 		function updateBalance() {
-			
+			var userIds = [];
+			for (var i = 0; i < vm.players.length; i++) {
+				userIds.push(vm.players[i]._id);
+			}
+			userHttpService.changeUsersBalance({
+				matchId: matchData._id,
+				userIds: userIds,
+				value: vm.costPerPerson
+			}, function(data) {
+				$uibModalInstance.close({
+					userIds: userIds,
+					matchId: matchData._id,
+					value: vm.costPerPerson
+				});
+			});
 		}
 
 		function updateSurcharge(propName, value) {

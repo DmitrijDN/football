@@ -13,8 +13,19 @@ require('../../app/app');
 
 	function BalanceService() {
 		var service = {
+			changeUsersBalance: changeUsersBalance,
 			countTotalBalance: countTotalBalance
 		};
+
+		function changeUsersBalance(users, userIdsToChange, value) {
+			if (!users || !users.length || !userIdsToChange || !userIdsToChange.length || !value) return;
+
+			var iterationsCount = users.length;
+			for (var i = 0; i < iterationsCount; i++) {
+				if (userIdsToChange.indexOf(users[i]._id) !== -1) users[i].balance -= value;
+			}
+		}
+
 
 		function countTotalBalance(users) {
 			if (!users || !users.length) return 0;
@@ -26,7 +37,6 @@ require('../../app/app');
 			}
 			return result;
 		}
-
 		return service;
 	}
 })();

@@ -14,6 +14,7 @@ require('../../app/app');
 	function UserHttpService(httpService) {
 		var service = {
 				addItem: addItem,
+				changeUsersBalance: changeUsersBalance,
 				getAllItems: getAllItems,
 				getAllItemsSortedByName: getAllItemsSortedByName,
 				removeItem: removeItem,
@@ -28,6 +29,17 @@ require('../../app/app');
 				body: item,
 				errorMessageToDev: 'ADD NEW USER ERROR: ',
 				errorMessageToUser: 'Failed add new user',
+				successCallback: successCallback
+			});
+		}
+
+		function changeUsersBalance(body, successCallback) {
+			httpService.sendHttpRequest({
+				type: 'PUT',
+				url: baseUrl + 'changeBalance',
+				body: body,
+				errorMessageToDev: 'CHANGE USERS BALANCE ERROR: ',
+				errorMessageToUser: 'Failed change users balance',
 				successCallback: successCallback
 			});
 		}

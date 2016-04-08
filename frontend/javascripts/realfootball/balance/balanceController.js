@@ -41,7 +41,9 @@ require('../../app/app');
 			});
 
 			modalInstance.result.then(function(result) {
-				vm.matchList.push(result);
+				helper.removeItemFromArrayById(vm.uncountedMatches, result.matchId);
+				balanceService.changeUsersBalance(vm.userList, result.userIds, result.value);
+				vm.totalBalance = balanceService.countTotalBalance(vm.userList);
 			});
 		}
 

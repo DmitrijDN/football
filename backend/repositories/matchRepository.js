@@ -11,6 +11,7 @@ MatchRepository.prototype = new Repository();
 
 MatchRepository.prototype.getAllItemsSortedByDate = getAllItemsSortedByDate;
 MatchRepository.prototype.getAllUncountedMatches = getAllUncountedMatches;
+MatchRepository.prototype.setAsCountedMatch = setAsCountedMatch;
 
 function getAllItemsSortedByDate(callback) {
 	var query = this.model.find({}).sort({
@@ -49,6 +50,17 @@ function populatePlayers(err, docs, callback) {
 	User.populate(docs, options, function(err, projects) {
 		callback(err, projects);
 	});
+}
+
+function setAsCountedMatch(id, callback) {
+	var query = this.model.update({
+		_id: id
+	}, {
+		$set: {
+			balanceCounted: true
+		}
+	});
+	query.exec(callback);
 }
 
 module.exports = new MatchRepository();

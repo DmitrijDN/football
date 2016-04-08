@@ -43,6 +43,14 @@ module.exports = function(app) {
 		});
 	}, apiResponse);
 
+	app.put(baseUrl + 'changeBalance', function(req, res, next) {
+		userService.changeUsersBalance(req.body, function(err, data) {
+			res.data = data;
+			res.err = err;
+			next();
+		});
+	}, apiResponse);
+
 	app.delete(baseUrl + ':id', function(req, res, next) {
 		userRepository.removeById(req.params.id, function(err, data) {
 			console.log('DATA', data);
