@@ -3,7 +3,7 @@ var app = require('../../app/app');
 (function() {
 	'use strict';
 
-	angular.controller('CreateMatchController', CreateMatchController);
+	app.controller('CreateMatchController', CreateMatchController);
 
 	CreateMatchController.$inject = [
 		'$uibModalInstance',
@@ -46,7 +46,8 @@ var app = require('../../app/app');
 				alertify.error('Minimum players for each team should be 3+');
 				return null;
 			}
-			vm.teams = matchService.randomTeamsDraw(selectedUsers, vm.teamsCount);
+			// vm.teams = matchService.randomTeamsDraw(selectedUsers, vm.teamsCount);
+			vm.teams = matchService.generateEqualTeams(selectedUsers, vm.teamsCount);
 
 		}
 

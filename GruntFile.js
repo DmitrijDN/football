@@ -118,14 +118,13 @@ module.exports = function(grunt) {
 				}]
 			},
 			resources: {
-                files: [{
-                        expand: true,
-                        cwd: 'frontend/resources/',
-                        src: ['**'],
-                        dest: 'public/resources/'
-                    }
-                ]
-            },
+				files: [{
+					expand: true,
+					cwd: 'frontend/resources/',
+					src: ['**'],
+					dest: 'public/resources/'
+				}]
+			},
 		},
 
 		clean: {
@@ -137,7 +136,10 @@ module.exports = function(grunt) {
 		browserify: {
 			my: {
 				dest: 'public/javascripts/main.js',
-				src: ['frontend/javascripts/**/*.js']
+				src: ['frontend/javascripts/**/*.js'],
+				options: {
+					require: ['./frontend/javascripts/app/app.js']
+				}
 			}
 		},
 
@@ -151,7 +153,7 @@ module.exports = function(grunt) {
 					'bower_components/angular-route/angular-route.js',
 					'bower_components/alertify.js/dist/js/alertify.js',
 					'bower_components/angular-bootstrap/ui-bootstrap.js',
-                    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+					'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
 				],
 				dest: 'public/javascripts/libs.js',
 			},
@@ -176,9 +178,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-browserify');
 
-	grunt.registerTask('common', ['clean', 'jshint', 'jade', 'stylus', 'copy', 'concat']);
+	grunt.registerTask('common', ['clean', 'jshint', 'jade', 'stylus', 'copy']);
 	grunt.registerTask('default', ['common', 'browserify', 'concat']);
-	grunt.registerTask('dev', ['common', 'browserify', 'watch']);
+	grunt.registerTask('dev', ['common', 'concat', 'browserify', 'watch']);
 	grunt.registerTask('javascripts', ['jshint', 'clean', 'copy', 'concat', 'browserify']);
 	grunt.registerTask('release', ['clean', 'jshint', 'jade', 'stylus', 'copy', 'concat', 'browserify', 'uglify']);
 };

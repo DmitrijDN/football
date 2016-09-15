@@ -12,6 +12,8 @@
 				span A
 			.small-col
 				span D
+			.small-col
+				span T
 			.control-col.right-aligned
 				i.fa.fa-plus-circle.fa-2x(ng-click="userCtrl.addItem()")
 		.data
@@ -26,5 +28,7 @@
 					input(ng-model="user.attack" placeholder="Enter attack" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('attack', user)")
 				.small-col
 					input(ng-model="user.defend" placeholder="Enter defend" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('defend', user)")
+				.small-col
+					span {{user.totalCharacteristic}}
 				.control-col.right-aligned
 					i.fa.fa-remove.fa-2x(ng-show="user._id" ng-click="userCtrl.removeItem(user._id)")

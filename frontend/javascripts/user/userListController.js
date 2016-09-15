@@ -1,4 +1,4 @@
-var  app = require('../app/app');
+var app = require('../app/app');
 
 (function() {
 	'use strict';
@@ -52,9 +52,21 @@ var  app = require('../app/app');
 				dataToUpdate[propName] = item[propName];
 			}
 			if (item._id) {
+				if (propName === 'physic' || propName === 'pass' || propName === 'attack' || propName === 'defend') {
+					dataToUpdate = {
+						physic: item.physic,
+						pass: item.pass,
+						attack: item.attack,
+						defend: item.defend,
+					};
+				}
 				userHttpService.updateItem({
 					_id: item._id,
 					dataToUpdate: dataToUpdate
+				}, function(data) {
+					for (var prop in data) {
+						item[prop] = data[prop];
+					}
 				});
 			} else userHttpService.addItem(dataToUpdate, function(data) {
 				for (var prop in data) {

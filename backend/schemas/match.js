@@ -15,6 +15,11 @@ var matchSchema = new Schema({
 			type: Schema.Types.ObjectId,
 			ref: 'User'
 		}],
+		strength: Number,
+		physic: Number,
+		pass: Number,
+		attack: Number,
+		defend: Number,
 		wins: Number,
 		loses: Number,
 		draws: Number

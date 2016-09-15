@@ -3,7 +3,7 @@ var app = require('../../app/app');
 (function() {
 	'use strict';
 
-	angular.controller('TournamentStatisticController', TournamentStatisticController);
+	app.controller('TournamentStatisticController', TournamentStatisticController);
 
 	TournamentStatisticController.$inject = [
 

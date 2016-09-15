@@ -1,5 +1,4 @@
-var app = require('../../app/app');
-
+var app = require('../../app/app.js');
 (function() {
 	'use strict';
 

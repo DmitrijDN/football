@@ -43,7 +43,7 @@ function changeUsersBalance(body, callback) {
 function updateItem(body, callback) {
 	if (checkService.checkIfBodyExists(body, callback) && checkService.checkBodyProperty(body, '_id', callback) &&
 		checkService.checkBodyProperty(body, 'dataToUpdate', callback)) {
-		userRepository.updatePropertiesById(body._id, body.dataToUpdate, callback);
+		userRepository.updatePropertiesByIdAndReturn(body._id, body.dataToUpdate, callback);
 	}
 }
 

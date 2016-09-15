@@ -10,6 +10,7 @@ Repository.prototype.getById = getById;
 Repository.prototype.removeById = removeById;
 Repository.prototype.updateFullObjectById = updateFullObjectById;
 Repository.prototype.updatePropertiesById = updatePropertiesById;
+Repository.prototype.updatePropertiesByIdAndReturn = updatePropertiesByIdAndReturn;
 
 function add(data, callback) {
 	var model = this.model,
@@ -51,21 +52,32 @@ function updateFullObjectById(id, newObj, callback) {
 	var query = this.model.update({
 		_id: id
 	}, newObj, {
-		multi: false
-	});
+			multi: false
+		});
 	query.exec(callback);
 }
 
 function updatePropertiesById(id, dataToUpdate, callback) {
-	console.log('\n\n\nid: ', id);
-	console.log('\n\n\ndataToUpdate: ', dataToUpdate);
 	var query = this.model.update({
 		_id: id
 	}, {
-		$set: dataToUpdate
-	}, {
-		multi: false
-	});
+			$set: dataToUpdate
+		}, {
+			multi: false
+		});
+	query.exec(callback);
+}
+
+function updatePropertiesByIdAndReturn(id, dataToUpdate, callback) {
+	var query = this.model.findOneAndUpdate(
+		{
+			_id: id
+		},
+		{
+			$set: dataToUpdate
+		}, {
+			new: true
+		});
 	query.exec(callback);
 }
 

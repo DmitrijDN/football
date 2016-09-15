@@ -1,4 +1,5 @@
 var  app = require('../../app/app');
+// var async = require('async');
 
 (function() {
 	'use strict';
@@ -14,8 +15,7 @@ var  app = require('../../app/app');
 	];
 
 	function BalanceController($uibModal, balanceService, helper, matchHttpSerivce, userHttpService) {
-		var async = require('async'),
-			vm = this;
+		var vm = this;
 
 		vm.userList = [];
 		vm.totalBalance = 0;
@@ -64,20 +64,20 @@ var  app = require('../../app/app');
 		}
 
 		(function() {
-			async.parallel({
-				getUsers: function(callback) {
-					userHttpService.getAllItemsSortedByName(function(data) {
-						vm.userList = data;
-						vm.totalBalance = balanceService.countTotalBalance(vm.userList);
-						callback(null, null);
-					});
-				},
-				getUncountedMatches: function(callback) {
-					matchHttpSerivce.getUncountedMatches(function(data) {
-						vm.uncountedMatches = data;
-					});
-				}
-			});
+			// async.parallel({
+			// 	getUsers: function(callback) {
+			// 		userHttpService.getAllItemsSortedByName(function(data) {
+			// 			vm.userList = data;
+			// 			vm.totalBalance = balanceService.countTotalBalance(vm.userList);
+			// 			callback(null, null);
+			// 		});
+			// 	},
+			// 	getUncountedMatches: function(callback) {
+			// 		matchHttpSerivce.getUncountedMatches(function(data) {
+			// 			vm.uncountedMatches = data;
+			// 		});
+			// 	}
+			// });
 		})();
 	}
 })();

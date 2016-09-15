@@ -15,7 +15,8 @@
 		.default-btn(ng-show="newMacthCtrl.teams.length" ng-click="newMacthCtrl.saveTeams(newMacthCtrl.teams)")
 			span Accept
 	.teams-data-wrapper(ng-show="newMacthCtrl.teams.length")
-		.team-item(ng-repeat="team in newMacthCtrl.teams track by team.name")
-			p {{team.name}}
-			.player(ng-repeat="player in team.players")
+		.team-item(ng-repeat="team in newMacthCtrl.teams track by $index")
+			p {{team.name + ': ' + team.strength}}
+			p {{'Ph: ' + team.physic + ' P: ' + team.pass + ' A: ' + team.attack + ' D: ' + team.defend}}
+			.player(ng-repeat="player in team.players track by $index")
 				span {{player.fullName + " "}}
