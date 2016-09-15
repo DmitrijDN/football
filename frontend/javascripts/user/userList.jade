@@ -4,11 +4,27 @@
 		.row-item.header
 			.medium-col
 				span Name
+			.small-col
+				span Ph
+			.small-col
+				span P
+			.small-col
+				span A
+			.small-col
+				span D
 			.control-col.right-aligned
 				i.fa.fa-plus-circle.fa-2x(ng-click="userCtrl.addItem()")
 		.data
 			.row-item(ng-repeat="user in userCtrl.userList")
 				.medium-col
 					input(ng-model="user.fullName" placeholder="Enter name" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('fullName', user)")
+				.small-col
+					input(ng-model="user.physic" placeholder="Enter physic" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('physic', user)")
+				.small-col
+					input(ng-model="user.pass" placeholder="Enter pass" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('pass', user)")
+				.small-col
+					input(ng-model="user.attack" placeholder="Enter attack" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('attack', user)")
+				.small-col
+					input(ng-model="user.defend" placeholder="Enter defend" ng-model-options="{updateOn: 'blur change'}" ng-change="userCtrl.updateProperty('defend', user)")
 				.control-col.right-aligned
 					i.fa.fa-remove.fa-2x(ng-show="user._id" ng-click="userCtrl.removeItem(user._id)")

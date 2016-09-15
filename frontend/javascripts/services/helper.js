@@ -1,11 +1,9 @@
-require('../app/app');
+var app = require('../app/app');
 
 (function() {
 	'use strict';
 
-	angular
-		.module('football-app')
-		.factory('Helper', Helper);
+	app.factory('Helper', Helper);
 
 	Helper.$inject = [
 

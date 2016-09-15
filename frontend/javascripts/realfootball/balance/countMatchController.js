@@ -1,11 +1,9 @@
-require('../../app/app');
+var  app = require('../../app/app');
 
 (function() {
 	'use strict';
 
-	angular
-		.module('football-app')
-		.controller('CountMatchController', CountMatchController);
+	app.controller('CountMatchController', CountMatchController);
 
 	CountMatchController.$inject = [
 		'$uibModalInstance',

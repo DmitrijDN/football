@@ -7,18 +7,23 @@ var userSchema = new Schema({
 	lastName: String,
 	password: String,
 	role: String,
+	physic: Number,
+	pass: Number,
+	attack: Number,
+	defend: Number,
+	totalCharacteristic: Number,
 }, {
-	toObject: {
-		virtuals: true
-	},
-	toJSON: {
-		virtuals: true
-	}
-});
+		toObject: {
+			virtuals: true
+		},
+		toJSON: {
+			virtuals: true
+		}
+	});
 
 userSchema
 	.virtual('fullName')
-	.get(function() {
+	.get(function () {
 		return this.firstName + ' ' + this.lastName;
 	});
 

@@ -1,4 +1,4 @@
-angular.module('football-app', ['ngRoute', 'ui.bootstrap'])
+var app = angular.module('football-app', ['ngRoute', 'ui.bootstrap'])
 	.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
 		$routeProvider
 			.when('/fifa/tournament/', {
@@ -33,3 +33,5 @@ angular.module('football-app', ['ngRoute', 'ui.bootstrap'])
 		$httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 		$httpProvider.defaults.headers.put['Content-Type'] = 'application/json; charset=utf-8';
 	}]);
+
+module.exports = app;

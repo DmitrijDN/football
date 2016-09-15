@@ -178,7 +178,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('common', ['clean', 'jshint', 'jade', 'stylus', 'copy', 'concat']);
 	grunt.registerTask('default', ['common', 'browserify', 'concat']);
-	grunt.registerTask('dev', ['common', 'browserify', 'concat', 'watch']);
+	grunt.registerTask('dev', ['common', 'browserify', 'watch']);
 	grunt.registerTask('javascripts', ['jshint', 'clean', 'copy', 'concat', 'browserify']);
 	grunt.registerTask('release', ['clean', 'jshint', 'jade', 'stylus', 'copy', 'concat', 'browserify', 'uglify']);
 };

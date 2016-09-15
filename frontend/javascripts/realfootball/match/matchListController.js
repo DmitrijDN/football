@@ -1,11 +1,9 @@
-require('../../app/app');
+var app = require('../../app/app');
 
 (function() {
 	'use strict';
 
-	angular
-		.module('football-app')
-		.controller('MatchListController', MatchListController);
+	app.controller('MatchListController', MatchListController);
 
 	MatchListController.$inject = [
 		'$uibModal',

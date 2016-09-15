@@ -1,11 +1,9 @@
-require('../../app/app');
+var app = require('../../app/app');
 
 (function() {
 	'use strict';
 
-	angular
-		.module('football-app')
-		.factory('MatchHttpService', MatchHttpService);
+	app.factory('MatchHttpService', MatchHttpService);
 
 	MatchHttpService.$inject = [
 		'HttpService'

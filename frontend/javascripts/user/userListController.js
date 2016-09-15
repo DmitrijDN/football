@@ -1,11 +1,9 @@
-require('../app/app');
+var  app = require('../app/app');
 
 (function() {
 	'use strict';
 
-	angular
-		.module('football-app')
-		.controller('UserListController', UserListController);
+	app.controller('UserListController', UserListController);
 
 	UserListController.$inject = [
 		'Helper',
