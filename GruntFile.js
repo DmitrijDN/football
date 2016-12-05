@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 			compile: {
 				options: {
 					'include css': true,
-					'paths': ['frontend/styles/'],
+					'paths': ['frontend/styles/general/'],
 					'compress': true
 				},
 				files: {
